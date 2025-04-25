@@ -1,0 +1,14 @@
+image: mcr.microsoft.com/playwright:v1.40.0-jammy
+
+pipelines:
+  default:
+    - step:
+        name: Run Playwright Tests
+        caches:
+          - node
+        script:
+          - npm ci
+          - npx playwright install --with-deps
+          - npm test
+        artifacts:
+          - test-results/**
